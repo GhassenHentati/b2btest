@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>B2B Distribution</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="login-container">
+  <div class="login-card">
+    <h1>Connexion</h1>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <ion-item>
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Mot de passe</ion-label>
+        <ion-input type="password" formControlName="password"></ion-input>
+      </ion-item>
+
+      <ion-button 
+        expand="block" 
+        type="submit" 
+        [disabled]="loginForm.invalid || isLoading"
+        class="login-button">
+        Se connecter
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
