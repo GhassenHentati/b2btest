@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: b2b-ordering-backend
+    env: node
+    plan: free
+    buildCommand: npm run build:backend
+    startCommand: npm run start:backend
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: JWT_SECRET
+        fromQuery: JWT_SECRET
+      - key: FIREBASE_PROJECT_ID
+        fromQuery: FIREBASE_PROJECT_ID
+      - key: FIREBASE_PRIVATE_KEY
+        fromQuery: FIREBASE_PRIVATE_KEY
+      - key: FIREBASE_CLIENT_EMAIL
+        fromQuery: FIREBASE_CLIENT_EMAIL
