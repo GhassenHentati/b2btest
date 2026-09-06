@@ -1,0 +1,113 @@
+{
+    "theme": {
+      "name": "BH Distribution PWA",
+      "style": "Clean, modern, product-first, promo-friendly",
+      "consistency": "MANDATORY - All screens (login, home, admin, etc.) must use these exact design tokens. NO hardcoded colors. NO default Ionic styles. Every component must import and use theme variables."
+    },
+  
+    "colors": {
+      "primary": "#2F3C7E",
+      "primarySoft": "#E6E9F5",
+  
+      "accent": "#3CB7A0",
+      "accentSoft": "#DFF3EF",
+  
+      "success": "#3CB371",
+      "danger": "#E25555",
+      "warning": "#F4B400",
+  
+      "background": "#F7F8FA",
+      "surface": "#FFFFFF",
+      "border": "#E5E7EB",
+  
+      "text": {
+        "primary": "#1F2937",
+        "secondary": "#4B5563",
+        "muted": "#9CA3AF",
+        "inverse": "#FFFFFF"
+      }
+    },
+  
+    "typography": {
+      "font": "Inter, system-ui, -apple-system",
+      "sizes": {
+        "title": "18px",
+        "body": "14px",
+        "caption": "12px"
+      },
+      "weights": {
+        "bold": 600,
+        "medium": 500,
+        "regular": 400
+      }
+    },
+  
+    "layout": {
+      "pagePadding": "16px",
+      "cardRadius": "14px",
+      "chipRadius": "999px",
+      "controlHeight": "44px",
+      "bottomBarHeight": "56px"
+    },
+  
+    "components": {
+      "topBar": {
+        "height": "56px",
+        "background": "surface",
+        "text": "text.primary"
+      },
+  
+      "searchBar": {
+        "background": "#F0F2F6",
+        "radius": "999px",
+        "height": "44px"
+      },
+  
+      "filterChip": {
+        "inactiveBg": "primarySoft",
+        "inactiveText": "primary",
+        "activeBg": "primary",
+        "activeText": "text.inverse"
+      },
+  
+      "productCard": {
+        "background": "surface",
+        "radius": "14px",
+        "imageRadius": "10px",
+        "priceWeight": 600,
+        "favoriteColor": "danger"
+      },
+  
+      "quantityControl": {
+        "minusBg": "#E5E7EB",
+        "plusBg": "accent",
+        "plusText": "text.inverse",
+        "radius": "10px"
+      },
+  
+      "promoBadge": {
+        "background": "warning",
+        "text": "#FFFFFF"
+      },
+  
+      "newBadge": {
+        "background": "danger",
+        "text": "#FFFFFF"
+      },
+  
+      "bottomCartBar": {
+        "background": "primary",
+        "text": "text.inverse",
+        "radius": "14px",
+        "shadow": "0 -4px 12px rgba(0,0,0,0.12)"
+      }
+    },
+  
+    "uxRules": {
+      "mobileFirst": true,
+      "oneHandUse": true,
+      "largeTouchTargets": true,
+      "productImagesFirst": true,
+      "promotionsVisuallyStrong": true
+    }
+  }
