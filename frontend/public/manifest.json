@@ -1,0 +1,39 @@
+{
+  "name": "b2b-ordering-pwa",
+  "short_name": "B2B Distribution",
+  "description": "Plateforme de commande B2B mobile-first",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FFFFFF",
+  "theme_color": "#2F3C7E",
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["shopping", "business"],
+  "screenshots": [
+    {
+      "src": "assets/screenshot-1.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ]
+}

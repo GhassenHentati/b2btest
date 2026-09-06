@@ -1,0 +1,17 @@
+{
+  "name": "b2b-ordering-pwa",
+  "version": "1.0.0",
+  "description": "B2B Ordering Platform - PWA",
+  "scripts": {
+    "ng": "ng",
+    "start:frontend": "cd frontend && npm install && npm start",
+    "build:frontend": "cd frontend && npm run build",
+    "start:backend": "cd backend && npm install && npm run dev",
+    "build:backend": "cd backend && npm run build",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

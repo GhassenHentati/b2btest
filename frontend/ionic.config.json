@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/@ionic/angular/schematics/ionic-angular.json",
+  "name": "b2b-ordering-pwa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,96 @@
+@import 'theme.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: $font-family;
+  background-color: $background;
+  color: $text-primary;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ion-app {
+  --ion-background-color: #{$background};
+  --ion-text-color: #{$text-primary};
+  --ion-border-color: #{$border};
+}
+
+ion-header {
+  --ion-background-color: #{$surface};
+  --ion-border-color: #{$border};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+ion-toolbar {
+  --background: #{$surface};
+  --color: #{$text-primary};
+}
+
+ion-button {
+  --border-radius: #{$card-radius};
+  font-weight: $font-medium;
+}
+
+ion-button.ion-color-primary {
+  --background: #{$primary};
+  --color: #{$text-inverse};
+}
+
+ion-button.ion-color-accent {
+  --background: #{$accent};
+  --color: #{$text-inverse};
+}
+
+ion-card {
+  --background: #{$surface};
+  --border-radius: #{$card-radius};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+ion-item {
+  --background: #{$surface};
+  --border-color: #{$border};
+  --color: #{$text-primary};
+}
+
+ion-input, ion-select, ion-textarea {
+  --padding-start: 12px;
+  --padding-end: 12px;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $border;
+  border-radius: 4px;
+
+  &:hover {
+    background: $text-muted;
+  }
+}
