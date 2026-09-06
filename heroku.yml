@@ -1,0 +1,15 @@
+{
+  "name": "b2b-ordering-backend",
+  "build": {
+    "builder": "heroku/buildpacks:default",
+    "config": {}
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "PORT": "3000",
+    "JWT_SECRET": "CHANGE_ME_IN_PRODUCTION",
+    "FIREBASE_PROJECT_ID": "",
+    "FIREBASE_PRIVATE_KEY": "",
+    "FIREBASE_CLIENT_EMAIL": ""
+  }
+}

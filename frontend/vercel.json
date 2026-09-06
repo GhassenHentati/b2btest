@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build:frontend",
+  "outputDirectory": "frontend/dist/browser",
+  "framework": "angular",
+  "nodeVersion": "18"
+}

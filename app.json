@@ -1,0 +1,38 @@
+{
+  "name": "b2b-ordering-platform",
+  "description": "B2B Ordering Platform - PWA",
+  "region": "iad",
+  "keywords": ["node", "express", "firebase", "b2b"],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node environment",
+      "value": "production"
+    },
+    "PORT": {
+      "description": "Server port",
+      "value": "3000"
+    },
+    "JWT_SECRET": {
+      "description": "JWT secret key - CHANGE THIS!",
+      "value": "change-this-to-a-secure-key",
+      "required": true
+    },
+    "FIREBASE_PROJECT_ID": {
+      "description": "Firebase project ID",
+      "required": true
+    },
+    "FIREBASE_PRIVATE_KEY": {
+      "description": "Firebase private key",
+      "required": true
+    },
+    "FIREBASE_CLIENT_EMAIL": {
+      "description": "Firebase client email",
+      "required": true
+    }
+  }
+}
