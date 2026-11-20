@@ -16,7 +16,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(),
+    IonicModule.forRoot({ backButtonText: 'Retour' }),
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,

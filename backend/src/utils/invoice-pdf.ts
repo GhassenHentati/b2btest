@@ -86,6 +86,17 @@ export const renderInvoiceHtml = (inv: any, settings: Partial<InvoiceSettings>):
   .totals .grand td { border-top:2px solid var(--ink); font-size:18px; font-weight:700; padding-top:12px; }
   .totals .due td { color:#dc2626; font-weight:700; }
   .foot { margin-top:36px; font-size:13px; color:var(--muted); border-top:1px solid var(--line); padding-top:16px; white-space:pre-line; }
+  .scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  @media (max-width: 600px) {
+    body { padding:0; }
+    .sheet { padding:20px 16px; border-radius:0; box-shadow:none; }
+    .head { flex-direction:column; }
+    .head > div:last-child { text-align:left !important; }
+    h1 { font-size:22px; }
+    .grid { gap:16px; margin:20px 0; }
+    .scroll table { min-width:520px; }
+    .totals { width:100%; }
+  }
   @media print { body { background:#fff; padding:0; } .sheet { box-shadow:none; border-radius:0; } }
 </style></head>
 <body>
@@ -118,12 +129,12 @@ export const renderInvoiceHtml = (inv: any, settings: Partial<InvoiceSettings>):
       </div>
     </div>
 
-    <table>
+    <div class="scroll"><table>
       <thead><tr>
         <th>Article</th><th class="r">Qté</th><th class="r">P.U. HT</th><th class="r">Remise</th><th class="r">TVA</th><th class="r">Total TTC</th>
       </tr></thead>
       <tbody>${rows}</tbody>
-    </table>
+    </table></div>
 
     <table class="totals">
       <tr><td>Sous-total HT</td><td class="r">${money(inv.subtotal)}</td></tr>
@@ -137,8 +148,8 @@ export const renderInvoiceHtml = (inv: any, settings: Partial<InvoiceSettings>):
     ${paymentRows ? `
     <div style="margin-top:28px">
       <div class="label">Paiements</div>
-      <table><thead><tr><th>Date</th><th>Mode</th><th>Référence</th><th class="r">Montant</th></tr></thead>
-      <tbody>${paymentRows}</tbody></table>
+      <div class="scroll"><table><thead><tr><th>Date</th><th>Mode</th><th>Référence</th><th class="r">Montant</th></tr></thead>
+      <tbody>${paymentRows}</tbody></table></div>
     </div>` : ''}
 
     ${(inv.notes || inv.terms) ? `<div class="foot">${esc(inv.notes || '')}${inv.notes && inv.terms ? '\n\n' : ''}${esc(inv.terms || '')}</div>` : ''}
