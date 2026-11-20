@@ -52,9 +52,16 @@ ventilation de TVA exacte. `amountDue = total − somme(paiements)`. Arrondi mon
 · `/new` & `/:id/edit` → éditeur (lignes, produits, remises, totaux live, brouillon/envoyée)
 · `/:id` → détail (paiements, annulation, PDF) · `/settings` → paramètres société.
 
-## Pré-requis build (bugs préexistants, hors de ce module)
-1. `backend/package.json` : `jsonwebtoken` doit être `^9.0.2` (le `^9.1.0` actuel n'existe pas → `npm install` échoue).
-2. `frontend/angular.json` : structure workspace invalide (`version: "1.0.0"` au lieu de `1`, clés à plat au lieu de `projects`) → `ng build` échoue.
+## Corrections de build incluses
+Le projet ne compilait pas ; ces corrections le rendent compilable (`npm run build` backend, `ng build` frontend) :
+1. `backend/package.json` : `jsonwebtoken` `^9.1.0` (inexistant) → `^9.0.2`.
+2. `backend` : 4 erreurs TypeScript strictes dans `favorites.routes.ts` / `whatsapp.routes.ts`.
+3. `frontend/angular.json` : réécrit en workspace Angular valide (clé `projects`), assets servis depuis `public/`.
+4. `frontend/src/core` et `frontend/src/features` déplacés dans `src/app/` (là où les imports les attendaient).
+5. `frontend/src/styles/theme.scss` supprimé (doublon ambigu de `_theme.scss`) et CSS de base Ionic importés dans `global.scss`.
 
-> Le code du module de facturation compile sans erreur côté backend et n'introduit aucune
-> erreur TS nouvelle côté frontend.
+Reste : `src/index.html` référence `assets/icon.png` et `assets/icon-192.png`, absents du repo (404 sans impact).
+
+## Vérification
+- Simulation API (Firestore en mémoire, vraies routes) : 32/32 scénarios OK.
+- Parcours UI dans Chromium : création d'une facture → envoi → paiement partiel, sans erreur JS.

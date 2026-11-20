@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { InvoiceService, Invoice } from 'src/app/core/services/invoice.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-invoice-detail',

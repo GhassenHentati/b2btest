@@ -8,3 +8,5 @@
 ion-badge.st-paid { --background:#059669; } ion-badge.st-overdue { --background:#dc2626; }
 ion-badge.st-cancelled { --background:#9ca3af; } ion-badge.st-draft { --background:#6b7280; }
 ion-badge.st-partially_paid { --background:#d97706; } ion-badge.st-sent { --background:#2563eb; }
+
+ion-badge { padding:5px 10px; border-radius:999px; font-weight:600; font-size:11px; }

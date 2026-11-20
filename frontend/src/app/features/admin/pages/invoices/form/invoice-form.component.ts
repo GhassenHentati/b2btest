@@ -32,6 +32,11 @@ export class InvoiceFormComponent implements OnInit {
       this.notes = this.notes || s.defaultNotes || '';
       this.terms = this.terms || s.defaultTerms || '';
       if (!this.dueDate) this.computeDueDate();
+      // Lines created before settings arrived get the configured default VAT.
+      if (!this.id) {
+        this.items.filter((i) => !i.name && !i.productId)
+          .forEach((i) => (i.taxRate = Number(s.defaultTaxRate) || 0));
+      }
     });
 
     this.id = this.route.snapshot.paramMap.get('id');

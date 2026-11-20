@@ -10,3 +10,5 @@ ion-badge { text-transform:capitalize; }
 .st-draft { --background:#6b7280; }
 .st-partially_paid { --background:#d97706; }
 .st-sent, .st-accepted, .st-invoiced { --background:#2563eb; }
+
+ion-badge { padding:5px 10px; border-radius:999px; font-weight:600; font-size:11px; }

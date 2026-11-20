@@ -4,6 +4,7 @@ node_modules/
 
 # Build outputs
 build/
+dist/
 out-tsc/
 **/build/
 
@@ -31,6 +32,7 @@ yarn-error.log*
 
 # Angular
 /.angular/cache
+**/.angular/
 .sass-cache/
 
 # Testing

@@ -28,7 +28,7 @@ router.post('/send', authMiddleware, adminMiddleware, async (req: AuthRequest, r
         if (userDoc.exists) {
           const userData = userDoc.data();
           // TODO: Integrate with WhatsApp API (Twilio, etc.)
-          console.log(`Would send to ${userData.phone}: ${message}`);
+          console.log(`Would send to ${userData?.phone}: ${message}`);
           results.push({ userId, status: 'pending' });
         }
       } catch (err) {

@@ -8,7 +8,7 @@ const router = Router();
 router.get('/me', authMiddleware, async (req: AuthRequest, res: Response) => {
   try {
     const db = getFirestore();
-    const userId = req.user?.id;
+    const userId = req.user!.id; // guaranteed by authMiddleware
 
     const doc = await db.collection('favorites').doc(userId).get();
 
@@ -28,7 +28,7 @@ router.get('/me', authMiddleware, async (req: AuthRequest, res: Response) => {
 router.post('/me', authMiddleware, async (req: AuthRequest, res: Response) => {
   try {
     const db = getFirestore();
-    const userId = req.user?.id;
+    const userId = req.user!.id; // guaranteed by authMiddleware
     const { productId } = req.body;
 
     if (!productId) {
