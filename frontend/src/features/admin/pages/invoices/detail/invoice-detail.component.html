@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/admin/invoices"></ion-back-button></ion-buttons>
+    <ion-title>{{ inv?.number || 'Facture' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openPdf()" *ngIf="inv"><ion-icon slot="icon-only" name="document-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" *ngIf="inv">
+  <div class="top">
+    <ion-badge [class]="'st-' + inv.status">{{ statusLabels[inv.status] || inv.status }}</ion-badge>
+    <h2>{{ money(inv.total) }}</h2>
+    <p class="muted" *ngIf="inv.amountDue > 0 && inv.amountPaid">Reste dû {{ money(inv.amountDue) }}</p>
+  </div>
+
+  <ion-card>
+    <ion-card-content>
+      <strong>{{ inv.clientSnapshot?.companyName || inv.clientSnapshot?.name }}</strong>
+      <p class="muted">{{ inv.clientSnapshot?.email }}</p>
+      <p class="muted">Émise le {{ inv.issueDate | date:'dd/MM/yyyy' }} · Échéance {{ inv.dueDate | date:'dd/MM/yyyy' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header>Articles</ion-list-header>
+    <ion-item *ngFor="let it of inv.items">
+      <ion-label>
+        <h3>{{ it.name }}</h3>
+        <p>{{ it.qty }} {{ it.unitLabel }} × {{ money(it.unitPrice) }}<span *ngIf="it.taxRate"> · TVA {{ it.taxRate }}%</span></p>
+      </ion-label>
+      <span slot="end">{{ money(it.lineTotal || 0) }}</span>
+    </ion-item>
+  </ion-list>
+
+  <div class="totals">
+    <div><span>Sous-total HT</span><span>{{ money(inv.subtotal) }}</span></div>
+    <div *ngIf="inv.discountAmount"><span>Remise</span><span>-{{ money(inv.discountAmount) }}</span></div>
+    <div *ngFor="let t of inv.taxBreakdown"><span>{{ t.label }}</span><span>{{ money(t.amount) }}</span></div>
+    <div class="grand"><span>Total TTC</span><span>{{ money(inv.total) }}</span></div>
+    <div *ngIf="inv.amountPaid"><span>Payé</span><span>-{{ money(inv.amountPaid) }}</span></div>
+  </div>
+
+  <ion-list *ngIf="inv.payments?.length">
+    <ion-list-header>Paiements</ion-list-header>
+    <ion-item *ngFor="let p of inv.payments">
+      <ion-label><h3>{{ money(p.amount) }}</h3><p>{{ p.date | date:'dd/MM/yyyy' }} · {{ methodLabels[p.method] || p.method }} {{ p.reference }}</p></ion-label>
+      <ion-button slot="end" fill="clear" color="danger" size="small" (click)="deletePayment(p.id)">×</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <div class="actions">
+    <ion-button *ngIf="inv.status === 'draft'" expand="block" fill="outline" (click)="edit()">Modifier</ion-button>
+    <ion-button *ngIf="inv.status === 'draft'" expand="block" (click)="markSent()">Marquer envoyée</ion-button>
+    <ion-button *ngIf="inv.status !== 'paid' && inv.status !== 'cancelled'" expand="block" color="success" (click)="recordPayment()">Enregistrer un paiement</ion-button>
+    <ion-button *ngIf="inv.status !== 'cancelled' && inv.status !== 'paid'" expand="block" color="danger" fill="outline" (click)="cancel()">Annuler la facture</ion-button>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="loading" class="ion-padding"><ion-spinner></ion-spinner></ion-content>

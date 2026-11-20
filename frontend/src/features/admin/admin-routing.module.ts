@@ -9,6 +9,11 @@ const routes: Routes = [
     path: '',
     component: AdminDashboardComponent,
     canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path: 'invoices',
+    loadChildren: () => import('./pages/invoices/invoices.module').then(m => m.InvoicesModule),
+    canActivate: [AuthGuard, AdminGuard]
   }
 ];
 

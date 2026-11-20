@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/admin/invoices"></ion-back-button></ion-buttons>
+    <ion-title>{{ id ? 'Modifier la facture' : 'Nouvelle facture' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Client *</ion-label>
+    <ion-select [(ngModel)]="clientId" interface="popover" placeholder="Choisir un client">
+      <ion-select-option *ngFor="let c of clients" [value]="c.id">
+        {{ c.companyName || c.name }}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <div class="dates">
+    <ion-item>
+      <ion-label position="stacked">Date d'émission</ion-label>
+      <ion-input type="date" [(ngModel)]="issueDate" (ionChange)="computeDueDate()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Échéance</ion-label>
+      <ion-input type="date" [(ngModel)]="dueDate"></ion-input>
+    </ion-item>
+  </div>
+
+  <h3>Articles</h3>
+  <div class="item-row" *ngFor="let it of items; let i = index">
+    <ion-item>
+      <ion-label position="stacked">Produit (optionnel)</ion-label>
+      <ion-select [ngModel]="it.productId" (ionChange)="onProduct(it, $event.detail.value)" interface="popover" placeholder="— libre —">
+        <ion-select-option *ngFor="let p of products" [value]="p.id">{{ p.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Désignation *</ion-label>
+      <ion-input [(ngModel)]="it.name"></ion-input>
+    </ion-item>
+    <div class="nums">
+      <ion-item><ion-label position="stacked">Qté</ion-label><ion-input type="number" [(ngModel)]="it.qty"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">P.U. HT</ion-label><ion-input type="number" [(ngModel)]="it.unitPrice"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">Remise %</ion-label><ion-input type="number" [(ngModel)]="it.discountPercent"></ion-input></ion-item>
+      <ion-item><ion-label position="stacked">TVA %</ion-label><ion-input type="number" [(ngModel)]="it.taxRate"></ion-input></ion-item>
+    </div>
+    <div class="line-foot">
+      <span>{{ money(lineTotal(it)) }}</span>
+      <ion-button fill="clear" color="danger" size="small" (click)="removeItem(i)">Supprimer</ion-button>
+    </div>
+  </div>
+  <ion-button fill="outline" size="small" (click)="addItem()"><ion-icon slot="start" name="add"></ion-icon>Ajouter une ligne</ion-button>
+
+  <h3>Remise globale</h3>
+  <div class="dates">
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select [(ngModel)]="discount.type" interface="popover">
+        <ion-select-option value="percent">%</ion-select-option>
+        <ion-select-option value="fixed">Montant</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item><ion-label position="stacked">Valeur</ion-label><ion-input type="number" [(ngModel)]="discount.value"></ion-input></ion-item>
+  </div>
+
+  <ion-item><ion-label position="stacked">Notes</ion-label><ion-textarea [(ngModel)]="notes" rows="2"></ion-textarea></ion-item>
+  <ion-item><ion-label position="stacked">Conditions</ion-label><ion-textarea [(ngModel)]="terms" rows="2"></ion-textarea></ion-item>
+
+  <div class="totals">
+    <div><span>Sous-total HT</span><span>{{ money(subtotal) }}</span></div>
+    <div *ngIf="discountAmount"><span>Remise</span><span>-{{ money(discountAmount) }}</span></div>
+    <div><span>TVA</span><span>{{ money(taxTotal) }}</span></div>
+    <div class="grand"><span>Total TTC</span><span>{{ money(total) }}</span></div>
+  </div>
+
+  <div class="actions">
+    <ion-button expand="block" fill="outline" [disabled]="!valid() || saving" (click)="save()">Enregistrer en brouillon</ion-button>
+    <ion-button expand="block" [disabled]="!valid() || saving" (click)="save('sent')">Enregistrer &amp; marquer envoyée</ion-button>
+  </div>
+</ion-content>

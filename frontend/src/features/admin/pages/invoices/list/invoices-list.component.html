@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/admin"></ion-back-button></ion-buttons>
+    <ion-title>Facturation</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="settings()"><ion-icon slot="icon-only" name="settings-outline"></ion-icon></ion-button>
+      <ion-button (click)="create()"><ion-icon slot="icon-only" name="add"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment [(ngModel)]="segment" (ionChange)="onSegment()">
+      <ion-segment-button value="invoices"><ion-label>Factures</ion-label></ion-segment-button>
+      <ion-segment-button value="estimates"><ion-label>Devis</ion-label></ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="segment === 'invoices'" class="kpi">
+    <div><span class="muted">En attente de règlement</span><strong>{{ money(totalOutstanding) }}</strong></div>
+  </div>
+
+  <ion-item *ngIf="segment === 'invoices'">
+    <ion-label>Statut</ion-label>
+    <ion-select [(ngModel)]="statusFilter" (ionChange)="load()" interface="popover" placeholder="Tous">
+      <ion-select-option value="">Tous</ion-select-option>
+      <ion-select-option *ngFor="let s of invoiceStatuses" [value]="s">{{ statusLabels[s] }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list *ngIf="segment === 'invoices'">
+    <ion-item button *ngFor="let inv of invoices" (click)="open(inv.id)">
+      <ion-label>
+        <h2>{{ inv.number }} · {{ inv.clientSnapshot?.companyName || inv.clientSnapshot?.name }}</h2>
+        <p>Échéance {{ inv.dueDate | date: 'dd/MM/yyyy' }} · {{ money(inv.total, inv.currency) }}</p>
+      </ion-label>
+      <ion-badge slot="end" [class]="'st-' + inv.status">{{ statusLabels[inv.status] || inv.status }}</ion-badge>
+    </ion-item>
+    <p *ngIf="!loading && invoices.length === 0" class="empty">Aucune facture.</p>
+  </ion-list>
+
+  <ion-list *ngIf="segment === 'estimates'">
+    <ion-item *ngFor="let e of estimates">
+      <ion-label>
+        <h2>{{ e.number }} · {{ e.clientSnapshot?.companyName || e.clientSnapshot?.name }}</h2>
+        <p>Validité {{ e.expiryDate | date: 'dd/MM/yyyy' }} · {{ money(e.total, e.currency) }}</p>
+      </ion-label>
+      <ion-badge slot="end" [class]="'st-' + e.status">{{ statusLabels[e.status] || e.status }}</ion-badge>
+      <ion-button slot="end" size="small" fill="outline" *ngIf="!e.convertedInvoiceId"
+        (click)="convertEstimate(e, $event)">Convertir</ion-button>
+    </ion-item>
+    <p *ngIf="!loading && estimates.length === 0" class="empty">Aucun devis.</p>
+  </ion-list>
+
+  <ion-spinner *ngIf="loading"></ion-spinner>
+</ion-content>

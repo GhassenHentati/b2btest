@@ -1,0 +1,10 @@
+.top { text-align:center; margin-bottom:12px; }
+.top h2 { font-size:30px; margin:10px 0 2px; }
+.muted { color:var(--ion-color-medium); font-size:13px; }
+.totals { margin:16px 0; }
+.totals > div { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--ion-color-light); }
+.totals .grand { font-weight:700; font-size:18px; border-bottom:none; }
+.actions { display:flex; flex-direction:column; gap:8px; margin-top:16px; }
+ion-badge.st-paid { --background:#059669; } ion-badge.st-overdue { --background:#dc2626; }
+ion-badge.st-cancelled { --background:#9ca3af; } ion-badge.st-draft { --background:#6b7280; }
+ion-badge.st-partially_paid { --background:#d97706; } ion-badge.st-sent { --background:#2563eb; }

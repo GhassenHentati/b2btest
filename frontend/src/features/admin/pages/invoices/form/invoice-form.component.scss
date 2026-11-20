@@ -1,0 +1,10 @@
+h3 { margin:22px 0 8px; font-size:15px; }
+.dates, .nums { display:grid; gap:8px; }
+.dates { grid-template-columns:1fr 1fr; }
+.nums { grid-template-columns:repeat(4,1fr); }
+.item-row { border:1px solid var(--ion-color-light-shade); border-radius:12px; padding:8px; margin-bottom:12px; }
+.line-foot { display:flex; justify-content:space-between; align-items:center; padding:4px 8px; font-weight:600; }
+.totals { margin:20px 0; }
+.totals > div { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--ion-color-light); }
+.totals .grand { font-size:18px; font-weight:700; border-bottom:none; }
+.actions { display:flex; flex-direction:column; gap:8px; margin-top:16px; }

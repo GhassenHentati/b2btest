@@ -7,7 +7,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+  <ion-card button (click)="go('/admin/invoices')">
+    <ion-card-header>
+      <ion-card-title><ion-icon name="receipt-outline"></ion-icon> Facturation</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>Factures, devis, paiements et PDF.</ion-card-content>
+  </ion-card>
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>Admin Panel</ion-card-title>

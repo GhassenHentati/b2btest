@@ -12,6 +12,9 @@ import usersRoutes from './routes/users.routes';
 import categoriesRoutes from './routes/categories.routes';
 import productsRoutes from './routes/products.routes';
 import whatsappRoutes from './routes/whatsapp.routes';
+import invoicesRoutes from './routes/invoices.routes';
+import estimatesRoutes from './routes/estimates.routes';
+import invoiceSettingsRoutes from './routes/invoice-settings.routes';
 
 dotenv.config();
 
@@ -42,6 +45,9 @@ app.use('/api/users', usersRoutes);
 app.use('/api/categories', categoriesRoutes);
 app.use('/api/products', productsRoutes);
 app.use('/api/whatsapp', whatsappRoutes);
+app.use('/api/invoices', invoicesRoutes);
+app.use('/api/estimates', estimatesRoutes);
+app.use('/api/invoice-settings', invoiceSettingsRoutes);
 
 // Health check
 app.get('/health', (req: Request, res: Response) => {

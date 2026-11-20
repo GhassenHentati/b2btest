@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"><ion-back-button defaultHref="/admin/invoices"></ion-back-button></ion-buttons>
+    <ion-title>Paramètres de facturation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list-header>Société</ion-list-header>
+  <ion-item><ion-label position="stacked">Nom</ion-label><ion-input [(ngModel)]="s.companyName"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Email</ion-label><ion-input [(ngModel)]="s.companyEmail"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Téléphone</ion-label><ion-input [(ngModel)]="s.companyPhone"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Adresse</ion-label><ion-textarea [(ngModel)]="s.companyAddress" rows="2"></ion-textarea></ion-item>
+  <ion-item><ion-label position="stacked">N° TVA / Matricule fiscal</ion-label><ion-input [(ngModel)]="s.taxId"></ion-input></ion-item>
+
+  <ion-list-header>Numérotation &amp; défauts</ion-list-header>
+  <ion-item><ion-label position="stacked">Devise</ion-label><ion-input [(ngModel)]="s.currency" placeholder="EUR"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Préfixe factures</ion-label><ion-input [(ngModel)]="s.invoicePrefix"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Préfixe devis</ion-label><ion-input [(ngModel)]="s.estimatePrefix"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Longueur du n° (zéros)</ion-label><ion-input type="number" [(ngModel)]="s.numberPadding"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Délai d'échéance (jours)</ion-label><ion-input type="number" [(ngModel)]="s.defaultDueDays"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Taux TVA par défaut (%)</ion-label><ion-input type="number" [(ngModel)]="s.defaultTaxRate"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Libellé TVA par défaut</ion-label><ion-input [(ngModel)]="s.defaultTaxLabel"></ion-input></ion-item>
+  <ion-item><ion-label position="stacked">Notes par défaut</ion-label><ion-textarea [(ngModel)]="s.defaultNotes" rows="2"></ion-textarea></ion-item>
+  <ion-item><ion-label position="stacked">Conditions par défaut</ion-label><ion-textarea [(ngModel)]="s.defaultTerms" rows="2"></ion-textarea></ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" [disabled]="saving" (click)="save()">Enregistrer</ion-button>
+</ion-content>

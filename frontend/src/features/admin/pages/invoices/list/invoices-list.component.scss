@@ -1,0 +1,12 @@
+.kpi { display:flex; gap:16px; margin-bottom:12px; }
+.kpi > div { background:var(--ion-color-light); border-radius:12px; padding:14px 18px; flex:1; display:flex; flex-direction:column; }
+.kpi strong { font-size:22px; }
+.muted { color:var(--ion-color-medium); font-size:12px; margin-bottom:4px; }
+.empty { color:var(--ion-color-medium); text-align:center; padding:24px; }
+ion-badge { text-transform:capitalize; }
+.st-paid { --background:#059669; }
+.st-overdue { --background:#dc2626; }
+.st-cancelled, .st-declined, .st-expired { --background:#9ca3af; }
+.st-draft { --background:#6b7280; }
+.st-partially_paid { --background:#d97706; }
+.st-sent, .st-accepted, .st-invoiced { --background:#2563eb; }
